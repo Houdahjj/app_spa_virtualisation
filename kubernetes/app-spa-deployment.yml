@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-spa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-spa
+  template:
+    metadata:
+      labels:
+        app: app-spa
+    spec:
+      containers:
+        - image: app_spa:1
+          name: app-spa
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://db-mysql:3306/spa"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "root"
+      restartPolicy: Always
